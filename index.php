@@ -17,5 +17,18 @@ $f3->route('GET /', function() {
     echo $template->render('pages/home.html');
 });
 
+$f3->route('GET /personal_info', function() {
+    $template = new Template();
+    echo $template->render('pages/personal_info.html');
+});
+
+$f3->route('POST /interests', function($f3) {
+    $f3->set('interestsin', array('TV', 'Movies', 'Cooking','Board Games','Puzzles','Reading','Playing Cards','Video Games'));
+    $f3->set('interestsout', array('Hiking','Biking','Swimming','Collecting','Walking','Climbing'));
+
+    $template = new Template();
+    echo $template->render('pages/interests.html');
+});
+
 //Run fat free
 $f3->run();
