@@ -11,41 +11,56 @@
 </head>
 <body>
 <!-- Main information Div -->
-<div id="main">
-    <h1>Personal Information</h1>
-    <hr>
-    <div class="personal-info">
-        <form method="POST" action="/profile">
-            <div class="form-group">
-                <label for="first-name">First Name</label>
-                <input type="text" class="form-control" id="first-name" placeholder="First">
-            </div>
-            <div class="form-group">
-                <label for="last-name">Last Name</label>
-                <input type="text" class="form-control" id="last-name" placeholder="Last">
-            </div>
-            <div class="form-group">
-                <label for="age">Age</label>
-                <input type="text" class="form-control" id="age" placeholder="Age">
-            </div>
+<div class="card">
+    <div class="card-block">
+        <h1>Personal Information</h1>
+        <hr>
+        <div class="row">
+            <div class="personal-info">
+                <form method="POST" action="/profile">
+                    <div class="form-group">
+                        <label for="first-name">First Name</label>
+                        <input type="text" class="form-control" id="first-name" placeholder="First">
+                    </div>
+                    <div class="form-group">
+                        <label for="last-name">Last Name</label>
+                        <input type="text" class="form-control" id="last-name" placeholder="Last">
+                    </div>
+                    <div class="form-group">
+                        <label for="age">Age</label>
+                        <input type="text" class="form-control" id="age" placeholder="Age">
+                    </div>
 
-            <label>Gender</label>
-            <br>
-            <div class="form-check form-check-inline">
-                <label class="form-check-label">
-                    <input class="form-check-input" type="radio" name="gender" id="male" value="male"> Male
-                </label>
+                    <label>Gender</label>
+                    <br>
+                    <div class="form-check form-check-inline">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="radio" name="gender" id="male" value="male"> Male
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="radio" name="gender" id="female" value="female"> Female
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label for="age">Phone Number</label>
+                        <input type="text" class="form-control" id="phone" placeholder="123-456-7890">
+                    </div>
+                    <div class="d-flex flex-row-reverse">
+                        <div class="p-2">
+                            <button type="submit" class="btn btn-primary">Next></button>
+                        </div>
+                    </div>
+                </form>
             </div>
-            <div class="form-check form-check-inline">
-                <label class="form-check-label">
-                    <input class="form-check-input" type="radio" name="gender" id="female" value="female"> Female
-                </label>
+            <div>
+                <p>
+                    Note: All information entered is protected by our
+                    <span id="privacy-policy">privacy policy</span>.<br> Profile
+                    information can only be viewed by others with your permission.</p>
             </div>
-            <div class="form-group">
-                <label for="age">Phone Number</label>
-                <input type="text" class="form-control" id="phone" placeholder="123-456-7890">
-            </div>
-        </form>
+        </div>
     </div>
 </div>
 <!-- Bootstrap Script Links -->
