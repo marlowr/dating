@@ -22,12 +22,24 @@ $f3->route('GET /personal_info', function() {
     echo $template->render('pages/personal_info.html');
 });
 
+$f3->route('POST /profile', function() {
+    print_r($_POST);
+    $template = new Template();
+    echo $template->render('pages/profile.html');
+});
+
+
 $f3->route('POST /interests', function($f3) {
     $f3->set('interestsin', array('TV', 'Movies', 'Cooking','Board Games','Puzzles','Reading','Playing Cards','Video Games'));
     $f3->set('interestsout', array('Hiking','Biking','Swimming','Collecting','Walking','Climbing'));
 
     $template = new Template();
     echo $template->render('pages/interests.html');
+});
+
+$f3->route('POST /summary', function() {
+    $template = new Template();
+    echo $template->render('pages/summary.html');
 });
 
 //Run fat free

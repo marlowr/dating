@@ -20,13 +20,14 @@
 
                     <label><strong>In-door interests</strong></label>
                     <br>
-                    <repeat group="{{ @interestsin }}" value="{{ @interest }}">
+                    <?php foreach (($interestsin?:[]) as $interest): ?>
                         <div class="form-check form-check-inline spaced">
                             <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" id="{{ @interest }}" value="{{ @interest }}"> {{ @interest }}
+                                <input class="form-check-input" type="checkbox" id="<?= ($interest) ?>" value="<?= ($interest) ?>"> <?= ($interest)."
+" ?>
                             </label>
                         </div>
-                    </repeat>
+                    <?php endforeach; ?>
             </div>
             <div class="d-flex flex-row-reverse">
                 <div class="p-2">

@@ -1,4 +1,4 @@
-#main {
+.main {
     border: 1px solid lightgray;
     width: 85%;
     margin: 0px auto;
@@ -7,4 +7,22 @@
 
 #intro h2, #intro h4, #buttondiv {
     text-align: center;
+}
+
+.personal-info {
+    margin: 0 auto;
+    width: 50%;
+}
+
+#info {
+    border: solid 1px black;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background-color: lightgrey;
+    padding: 15px;
+}
+
+.spaced {
+    padding-right: 75px;
 }
