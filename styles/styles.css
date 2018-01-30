@@ -9,11 +9,6 @@
     text-align: center;
 }
 
-.personal-info {
-    margin: 0 auto;
-    width: 50%;
-}
-
 #info {
     border: solid 1px black;
     -webkit-border-radius: 5px;
@@ -24,5 +19,6 @@
 }
 
 .spaced {
-    padding-right: 75px;
+    display: inline-flex;
+    justify-content: flex-start;
 }

@@ -11,23 +11,54 @@
 </head>
 <body>
 <!-- Main information Div -->
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="#">Forest</a>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Profile</a>
+            </li>
+        </ul>
+    </div>
+</nav>
 <div class="main">
     <div class="card-block">
         <h1>Interests</h1>
         <hr>
         <form method="POST" action="./summary">
-            <div class="personal-info">
-
-                    <label><strong>In-door interests</strong></label>
-                    <br>
-                    <?php foreach (($interestsin?:[]) as $interest): ?>
-                        <div class="form-check form-check-inline spaced">
-                            <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" id="<?= ($interest) ?>" value="<?= ($interest) ?>"> <?= ($interest)."
+            <label><strong>In-door interests</strong></label>
+            <br>
+            <div class="row">
+                <?php foreach (($interestsin?:[]) as $interestin): ?>
+                    <div class="form-check form-check-inline col-md-auto">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" id="<?= ($interestin) ?>"
+                                   value="<?= ($interestin) ?>"> <?= ($interestin)."
 " ?>
-                            </label>
-                        </div>
-                    <?php endforeach; ?>
+                        </label>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+            <br>
+            <label><strong>Out-door interests</strong></label>
+            <br>
+            <div class="row">
+                <?php foreach (($interestsout?:[]) as $interestout): ?>
+                    <div class="form-check form-check-inline col-md-auto">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" id="<?= ($interestout) ?>"
+                                   value="<?= ($interestout) ?>"> <?= ($interestout)."
+" ?>
+                        </label>
+                    </div>
+                <?php endforeach; ?>
             </div>
             <div class="d-flex flex-row-reverse">
                 <div class="p-2">

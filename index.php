@@ -23,13 +23,21 @@ $f3->route('GET /personal_info', function() {
 });
 
 $f3->route('POST /profile', function() {
-    print_r($_POST);
+
+    $_SESSION['first-name'] = $_POST['first-name'];
+    $_SESSION['last-name'] = $_POST['last-name'];
+    $_SESSION['age'] = $_POST['age'];
+    $_SESSION['gender'] = $_POST['gender'];
     $template = new Template();
     echo $template->render('pages/profile.html');
 });
 
 
 $f3->route('POST /interests', function($f3) {
+    $_SESSION['email'] = $_POST['email'];
+    $_SESSION['state'] = $_POST['state'];
+    $_SESSION['seeking'] = $_POST['seeking'];
+    $_SESSION['biography'] = $_POST['biography'];
     $f3->set('interestsin', array('TV', 'Movies', 'Cooking','Board Games','Puzzles','Reading','Playing Cards','Video Games'));
     $f3->set('interestsout', array('Hiking','Biking','Swimming','Collecting','Walking','Climbing'));
 
@@ -37,7 +45,7 @@ $f3->route('POST /interests', function($f3) {
     echo $template->render('pages/interests.html');
 });
 
-$f3->route('POST /summary', function() {
+$f3->route('POST /summary', function($f3) {
     $template = new Template();
     echo $template->render('pages/summary.html');
 });
