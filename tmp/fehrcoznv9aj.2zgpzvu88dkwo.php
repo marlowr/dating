@@ -64,8 +64,6 @@
                         <label for="age"><strong>Phone Number</strong></label>
                         <input name="phone" type="text" class="form-control" id="phone" placeholder="123-456-7890">
                     </div>
-
-
             </div>
             <div class="col">
                 <p id="info">

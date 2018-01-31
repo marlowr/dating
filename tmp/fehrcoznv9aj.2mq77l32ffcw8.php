@@ -37,9 +37,9 @@
             <br>
             <div class="row">
                 <?php foreach (($interestsin?:[]) as $interestin): ?>
-                    <div class="form-check form-check-inline col-md-auto">
+                    <div class="form-check form-check-inline col">
                         <label class="form-check-label">
-                            <input class="form-check-input" type="checkbox" id="<?= ($interestin) ?>"
+                            <input name="interests[]" class="form-check-input" type="checkbox" id="<?= ($interestin) ?>"
                                    value="<?= ($interestin) ?>"> <?= ($interestin)."
 " ?>
                         </label>
@@ -51,9 +51,9 @@
             <br>
             <div class="row">
                 <?php foreach (($interestsout?:[]) as $interestout): ?>
-                    <div class="form-check form-check-inline col-md-auto">
+                    <div class="form-check form-check-inline col">
                         <label class="form-check-label">
-                            <input class="form-check-input" type="checkbox" id="<?= ($interestout) ?>"
+                            <input name="interests[]" class="form-check-input" type="checkbox" id="<?= ($interestout) ?>"
                                    value="<?= ($interestout) ?>"> <?= ($interestout)."
 " ?>
                         </label>

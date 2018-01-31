@@ -28,6 +28,20 @@
         </ul>
     </div>
 </nav>
+<div class="main">
+    <div class="card-block">
+        <h1>Profile</h1>
+        <hr>
+        <div class="row">
+            <p>Name: <?= ($firstname) ?>, <?= ($lastname) ?></p>
 
+        </div>
+        <div class="d-flex flex-row-reverse">
+            <div class="p-2">
+                <button type="submit" class="btn btn-primary">Contact Me!</button>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
