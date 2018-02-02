@@ -36,33 +36,109 @@
         <div class="row">
             <div class="col">
                     <div class="form-group">
-                        <label for="first-name"><strong>First Name</strong></label>
-                        <input name="first-name" type="text" class="form-control" id="first-name" placeholder="First">
+                        <label for="first-name"><strong>First Name</strong>
+                            <check if="{{ @firsterror }}">
+                                <span class="text-danger">{{ @firsterror }}</span>
+                            </check>
+                        </label>
+                        <check if="{{ @firstname }}">
+                            <true>
+                                <input name="first-name" type="text" class="form-control" id="first-name"
+                                       placeholder="{{ @firstname }}" value="{{ @firstname }}">
+                            </true>
+                            <false>
+                                <input name="first-name" type="text" class="form-control" id="first-name"
+                                       placeholder="First">
+                            </false>
+                        </check>
+
                     </div>
                     <div class="form-group">
-                        <label for="last-name"><strong>Last Name</strong></label>
-                        <input name="last-name" type="text" class="form-control" id="last-name" placeholder="Last">
+                        <label for="last-name"><strong>Last Name</strong>
+                            <check if="{{ @lasterror }}">
+                                <span class="text-danger">{{ @lasterror }}</span>
+                            </check>
+                        </label>
+                        <check if="{{ @lastname }}">
+                            <true>
+                                <input name="last-name" type="text" class="form-control" id="last-name"
+                                       placeholder="{{ @lastname }}" value="{{ @lastname }}">
+                            </true>
+                            <false>
+                                <input name="last-name" type="text" class="form-control" id="last-name"
+                                       placeholder="Last">
+                            </false>
+                        </check>
                     </div>
                     <div class="form-group">
-                        <label for="age"><strong>Age</strong></label>
-                        <input name="age" type="text" class="form-control" id="age" placeholder="Age">
+                        <label for="age"><strong>Age</strong>
+                            <check if="{{ @ageerror }}">
+                                <span class="text-danger">{{ @ageerror }}</span>
+                            </check>
+                        </label>
+                        <check if="{{ @age }}">
+                            <true>
+                                <input name="age" type="text" class="form-control" id="age"
+                                       placeholder="{{ @age }}" value="{{ @age }}">
+                            </true>
+                            <false>
+                                <input name="age" type="text" class="form-control" id="age"
+                                       placeholder="Age">
+                            </false>
+                        </check>
                     </div>
 
-                    <label><strong>Gender</strong></label>
+                    <label><strong>Gender</strong>
+                        <check if="{{ @gendererror }}">
+                            <span class="text-danger">{{ @gendererror }}</span>
+                        </check>
+                    </label>
                     <br>
                     <div class="form-check form-check-inline">
                         <label class="form-check-label">
-                            <input class="form-check-input" type="radio" name="gender" id="male" value="male"> Male
+                            <check if="{{ @gender=='male' }}">
+                                <true>
+                                <input class="form-check-input" type="radio"
+                                       name="gender" id="male" value="male" checked="">Male
+                                </true>
+                                <false>
+                                    <input class="form-check-input" type="radio"
+                                           name="gender" id="male" value="male"">Male
+                                </false>
+                            </check>
                         </label>
                     </div>
                     <div class="form-check form-check-inline">
                         <label class="form-check-label">
-                            <input class="form-check-input" type="radio" name="gender" id="female" value="female"> Female
+                            <check if="{{ @gender=='female' }}">
+                                <true>
+                                    <input class="form-check-input" type="radio"
+                                           name="gender" id="female" value="female" checked="">Female
+                                </true>
+                                <false>
+                                    <input class="form-check-input" type="radio"
+                                           name="gender" id="female" value="female"">Female
+                                </false>
+                            </check>
                         </label>
                     </div>
                     <div class="form-group">
-                        <label for="age"><strong>Phone Number</strong></label>
-                        <input name="phone" type="text" class="form-control" id="phone" placeholder="123-456-7890">
+                        <label for="age"><strong>Phone Number</strong>
+                            <check if="{{ @phoneerror }}">
+                                <span class="text-danger">{{ @phoneerror }}</span>
+                            </check>
+                        </label>
+                        <check if="{{ @phone }}">
+                            <true>
+                                <input name="phone" type="text" class="form-control"
+                                       id="phone" placeholder="{{ @phone }}" value="{{ @phone }}">
+                            </true>
+                            <false>
+                                <input name="phone" type="text" class="form-control"
+                                       id="phone" placeholder="123-456-7890">
+                            </false>
+                        </check>
+
                     </div>
             </div>
             <div class="col">

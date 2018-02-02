@@ -36,33 +36,109 @@
         <div class="row">
             <div class="col">
                     <div class="form-group">
-                        <label for="first-name"><strong>First Name</strong></label>
-                        <input name="first-name" type="text" class="form-control" id="first-name" placeholder="First">
+                        <label for="first-name"><strong>First Name</strong>
+                            <?php if ($firsterror): ?>
+                                <span class="text-danger"><?= ($firsterror) ?></span>
+                            <?php endif; ?>
+                        </label>
+                        <?php if ($firstname): ?>
+                            
+                                <input name="first-name" type="text" class="form-control" id="first-name"
+                                       placeholder="<?= ($firstname) ?>" value="<?= ($firstname) ?>">
+                            
+                            <?php else: ?>
+                                <input name="first-name" type="text" class="form-control" id="first-name"
+                                       placeholder="First">
+                            
+                        <?php endif; ?>
+
                     </div>
                     <div class="form-group">
-                        <label for="last-name"><strong>Last Name</strong></label>
-                        <input name="last-name" type="text" class="form-control" id="last-name" placeholder="Last">
+                        <label for="last-name"><strong>Last Name</strong>
+                            <?php if ($lasterror): ?>
+                                <span class="text-danger"><?= ($lasterror) ?></span>
+                            <?php endif; ?>
+                        </label>
+                        <?php if ($lastname): ?>
+                            
+                                <input name="last-name" type="text" class="form-control" id="last-name"
+                                       placeholder="<?= ($lastname) ?>" value="<?= ($lastname) ?>">
+                            
+                            <?php else: ?>
+                                <input name="last-name" type="text" class="form-control" id="last-name"
+                                       placeholder="Last">
+                            
+                        <?php endif; ?>
                     </div>
                     <div class="form-group">
-                        <label for="age"><strong>Age</strong></label>
-                        <input name="age" type="text" class="form-control" id="age" placeholder="Age">
+                        <label for="age"><strong>Age</strong>
+                            <?php if ($ageerror): ?>
+                                <span class="text-danger"><?= ($ageerror) ?></span>
+                            <?php endif; ?>
+                        </label>
+                        <?php if ($age): ?>
+                            
+                                <input name="age" type="text" class="form-control" id="age"
+                                       placeholder="<?= ($age) ?>" value="<?= ($age) ?>">
+                            
+                            <?php else: ?>
+                                <input name="age" type="text" class="form-control" id="age"
+                                       placeholder="Age">
+                            
+                        <?php endif; ?>
                     </div>
 
-                    <label><strong>Gender</strong></label>
+                    <label><strong>Gender</strong>
+                        <?php if ($gendererror): ?>
+                            <span class="text-danger"><?= ($gendererror) ?></span>
+                        <?php endif; ?>
+                    </label>
                     <br>
                     <div class="form-check form-check-inline">
                         <label class="form-check-label">
-                            <input class="form-check-input" type="radio" name="gender" id="male" value="male"> Male
+                            <?php if ($gender=='male'): ?>
+                                
+                                <input class="form-check-input" type="radio"
+                                       name="gender" id="male" value="male" checked="">Male
+                                
+                                <?php else: ?>
+                                    <input class="form-check-input" type="radio"
+                                           name="gender" id="male" value="male"">Male
+                                
+                            <?php endif; ?>
                         </label>
                     </div>
                     <div class="form-check form-check-inline">
                         <label class="form-check-label">
-                            <input class="form-check-input" type="radio" name="gender" id="female" value="female"> Female
+                            <?php if ($gender=='female'): ?>
+                                
+                                    <input class="form-check-input" type="radio"
+                                           name="gender" id="female" value="female" checked="">Female
+                                
+                                <?php else: ?>
+                                    <input class="form-check-input" type="radio"
+                                           name="gender" id="female" value="female"">Female
+                                
+                            <?php endif; ?>
                         </label>
                     </div>
                     <div class="form-group">
-                        <label for="age"><strong>Phone Number</strong></label>
-                        <input name="phone" type="text" class="form-control" id="phone" placeholder="123-456-7890">
+                        <label for="age"><strong>Phone Number</strong>
+                            <?php if ($phoneerror): ?>
+                                <span class="text-danger"><?= ($phoneerror) ?></span>
+                            <?php endif; ?>
+                        </label>
+                        <?php if ($phone): ?>
+                            
+                                <input name="phone" type="text" class="form-control"
+                                       id="phone" placeholder="<?= ($phone) ?>" value="<?= ($phone) ?>">
+                            
+                            <?php else: ?>
+                                <input name="phone" type="text" class="form-control"
+                                       id="phone" placeholder="123-456-7890">
+                            
+                        <?php endif; ?>
+
                     </div>
             </div>
             <div class="col">

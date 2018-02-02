@@ -8,7 +8,7 @@ function validName($string) {
 
 
 function validAge($age) {
-    if(ctype_digit($age) && $age >= 18) {
+    if(ctype_digit($age) && $age >= 18 && $age<=100) {
         return true;
     }
 }
@@ -16,7 +16,7 @@ function validAge($age) {
 
 function validPhone($phone) {
     $phone = filter_var($phone,FILTER_SANITIZE_STRING);
-    if(strlen($phone)>=7 || strlen($phone)<=10) {
+    if(strlen($phone)>=7 && strlen($phone)<=10 && ctype_digit($phone)) {
         $_SESSION['phone'] = $phone;
         return true;
     }
