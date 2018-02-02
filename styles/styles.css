@@ -1,3 +1,9 @@
+/*
+Ryan Marlow
+IT328 2/2/2018
+This file contains the css styles for the dating website.
+ */
+
 .main {
     border: 1px solid lightgray;
     width: 85%;
@@ -21,4 +27,18 @@
 .spaced {
     display: inline-flex;
     justify-content: flex-start;
+}
+
+.informational {
+    border: 1px solid lightgrey;
+    margin-left: 2rem;
+    margin-bottom: 0px;
+    list-style: none;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.image {
+    width: 40%;
 }

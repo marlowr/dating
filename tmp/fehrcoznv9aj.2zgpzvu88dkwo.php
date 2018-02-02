@@ -41,16 +41,8 @@
                                 <span class="text-danger"><?= ($firsterror) ?></span>
                             <?php endif; ?>
                         </label>
-                        <?php if ($firstname): ?>
-                            
-                                <input name="first-name" type="text" class="form-control" id="first-name"
-                                       placeholder="<?= ($firstname) ?>" value="<?= ($firstname) ?>">
-                            
-                            <?php else: ?>
-                                <input name="first-name" type="text" class="form-control" id="first-name"
-                                       placeholder="First">
-                            
-                        <?php endif; ?>
+                        <input name="first-name" type="text" class="form-control" id="first-name"
+                                       placeholder="First" value="<?= ($firstname) ?>">
 
                     </div>
                     <div class="form-group">
@@ -59,16 +51,8 @@
                                 <span class="text-danger"><?= ($lasterror) ?></span>
                             <?php endif; ?>
                         </label>
-                        <?php if ($lastname): ?>
-                            
-                                <input name="last-name" type="text" class="form-control" id="last-name"
-                                       placeholder="<?= ($lastname) ?>" value="<?= ($lastname) ?>">
-                            
-                            <?php else: ?>
-                                <input name="last-name" type="text" class="form-control" id="last-name"
-                                       placeholder="Last">
-                            
-                        <?php endif; ?>
+                        <input name="last-name" type="text" class="form-control" id="last-name"
+                                       placeholder="Last" value="<?= ($lastname) ?>">
                     </div>
                     <div class="form-group">
                         <label for="age"><strong>Age</strong>
@@ -76,16 +60,8 @@
                                 <span class="text-danger"><?= ($ageerror) ?></span>
                             <?php endif; ?>
                         </label>
-                        <?php if ($age): ?>
-                            
-                                <input name="age" type="text" class="form-control" id="age"
-                                       placeholder="<?= ($age) ?>" value="<?= ($age) ?>">
-                            
-                            <?php else: ?>
-                                <input name="age" type="text" class="form-control" id="age"
-                                       placeholder="Age">
-                            
-                        <?php endif; ?>
+                        <input name="age" type="text" class="form-control" id="age"
+                                       placeholder="Age" value="<?= ($age) ?>">
                     </div>
 
                     <label><strong>Gender</strong>
@@ -96,28 +72,28 @@
                     <br>
                     <div class="form-check form-check-inline">
                         <label class="form-check-label">
-                            <?php if ($gender=='male'): ?>
+                            <?php if ($gender=='Male'): ?>
                                 
                                 <input class="form-check-input" type="radio"
-                                       name="gender" id="male" value="male" checked="">Male
+                                       name="gender" value="Male" checked=""> Male
                                 
                                 <?php else: ?>
                                     <input class="form-check-input" type="radio"
-                                           name="gender" id="male" value="male"">Male
+                                           name="gender" value="Male"> Male
                                 
                             <?php endif; ?>
                         </label>
                     </div>
                     <div class="form-check form-check-inline">
                         <label class="form-check-label">
-                            <?php if ($gender=='female'): ?>
+                            <?php if ($gender=='Female'): ?>
                                 
                                     <input class="form-check-input" type="radio"
-                                           name="gender" id="female" value="female" checked="">Female
+                                           name="gender" value="Female" checked=""> Female
                                 
                                 <?php else: ?>
                                     <input class="form-check-input" type="radio"
-                                           name="gender" id="female" value="female"">Female
+                                           name="gender" value="Female"> Female
                                 
                             <?php endif; ?>
                         </label>
@@ -128,17 +104,8 @@
                                 <span class="text-danger"><?= ($phoneerror) ?></span>
                             <?php endif; ?>
                         </label>
-                        <?php if ($phone): ?>
-                            
-                                <input name="phone" type="text" class="form-control"
-                                       id="phone" placeholder="<?= ($phone) ?>" value="<?= ($phone) ?>">
-                            
-                            <?php else: ?>
-                                <input name="phone" type="text" class="form-control"
-                                       id="phone" placeholder="123-456-7890">
-                            
-                        <?php endif; ?>
-
+                        <input name="phone" type="text" class="form-control"
+                                       id="phone" placeholder="123-456-7890" value="<?= ($phone) ?>">
                     </div>
             </div>
             <div class="col">

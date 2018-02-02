@@ -36,87 +36,67 @@
         <div class="row">
             <div class="col">
                     <div class="form-group">
-                        <label for="email">Email</label>
-                        <input name="email" type="text" class="form-control" id="email" placeholder="example@mail.com">
+                        <label for="email"><strong>Email</strong>
+                            <?php if ($emailerror): ?>
+                                <span class="text-danger"><?= ($emailerror) ?></span>
+                            <?php endif; ?>
+                        </label>
+                        <input name="email" type="text" class="form-control" id="email" placeholder="example@mail.com" value="<?= ($email) ?>">
                     </div>
                     <div class="form-group">
                         <div class="form-group">
-                            <label for="state">State</label>
+                            <label for="state"><strong>State</strong></label>
                             <select name="state" class="form-control" id="state">
                                 <option>Select</option>
-                                <option value="AL">Alabama</option>
-                                <option value="AK">Alaska</option>
-                                <option value="AZ">Arizona</option>
-                                <option value="AR">Arkansas</option>
-                                <option value="CA">California</option>
-                                <option value="CO">Colorado</option>
-                                <option value="CT">Connecticut</option>
-                                <option value="DE">Delaware</option>
-                                <option value="DC">District Of Columbia</option>
-                                <option value="FL">Florida</option>
-                                <option value="GA">Georgia</option>
-                                <option value="HI">Hawaii</option>
-                                <option value="ID">Idaho</option>
-                                <option value="IL">Illinois</option>
-                                <option value="IN">Indiana</option>
-                                <option value="IA">Iowa</option>
-                                <option value="KS">Kansas</option>
-                                <option value="KY">Kentucky</option>
-                                <option value="LA">Louisiana</option>
-                                <option value="ME">Maine</option>
-                                <option value="MD">Maryland</option>
-                                <option value="MA">Massachusetts</option>
-                                <option value="MI">Michigan</option>
-                                <option value="MN">Minnesota</option>
-                                <option value="MS">Mississippi</option>
-                                <option value="MO">Missouri</option>
-                                <option value="MT">Montana</option>
-                                <option value="NE">Nebraska</option>
-                                <option value="NV">Nevada</option>
-                                <option value="NH">New Hampshire</option>
-                                <option value="NJ">New Jersey</option>
-                                <option value="NM">New Mexico</option>
-                                <option value="NY">New York</option>
-                                <option value="NC">North Carolina</option>
-                                <option value="ND">North Dakota</option>
-                                <option value="OH">Ohio</option>
-                                <option value="OK">Oklahoma</option>
-                                <option value="OR">Oregon</option>
-                                <option value="PA">Pennsylvania</option>
-                                <option value="RI">Rhode Island</option>
-                                <option value="SC">South Carolina</option>
-                                <option value="SD">South Dakota</option>
-                                <option value="TN">Tennessee</option>
-                                <option value="TX">Texas</option>
-                                <option value="UT">Utah</option>
-                                <option value="VT">Vermont</option>
-                                <option value="VA">Virginia</option>
-                                <option value="WA">Washington</option>
-                                <option value="WV">West Virginia</option>
-                                <option value="WI">Wisconsin</option>
-                                <option value="WY">Wyoming</option>
+                                <?php foreach (($states?:[]) as $value): ?>
+                                    <?php if ($value == $state): ?>
+                                        
+                                            <option value="<?= ($value) ?>" selected="selected"><?= ($value) ?></option>
+                                        
+                                        <?php else: ?>
+                                            <option value="<?= ($value) ?>"><?= ($value) ?></option>
+                                        
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
                             </select>
                         </div>
                     </div>
 
-                    <label>Seeking</label>
+                    <label><strong>Seeking</strong></label>
                     <br>
                     <div class="form-check form-check-inline">
                         <label class="form-check-label">
-                            <input class="form-check-input" type="radio" name="seeking" id="male" value="male"> Male
+                            <?php if ($seeking=='Male'): ?>
+                                
+                                    <input class="form-check-input" type="radio"
+                                           name="seeking" value="Male" checked=""> Male
+                                
+                                <?php else: ?>
+                                    <input class="form-check-input" type="radio"
+                                           name="seeking" value="Male"> Male
+                                
+                            <?php endif; ?>
                         </label>
                     </div>
                     <div class="form-check form-check-inline">
                         <label class="form-check-label">
-                            <input class="form-check-input" type="radio" name="seeking" id="female" value="female"> Female
+                            <?php if ($seeking=='Female'): ?>
+                                
+                                    <input class="form-check-input" type="radio"
+                                           name="seeking" value="Female" checked=""> Female
+                                
+                                <?php else: ?>
+                                    <input class="form-check-input" type="radio"
+                                           name="seeking" value="Female"> Female
+                                
+                            <?php endif; ?>
                         </label>
                     </div>
             </div>
             <div class="col">
-                <label for="biography">Biography</label>
-                <textarea name="biography" placeholder="Describe yourself here..." class="form-control" id="biography" rows="6" cols="70">
-
-                </textarea>
+                <label for="biography"><strong>Biography</strong></label>
+                <textarea name="biography" placeholder="Describe yourself here..."
+                          class="form-control" id="biography" rows="6" cols="70"><?= ($biography) ?></textarea>
             </div>
         </div>
         <div class="d-flex flex-row-reverse">

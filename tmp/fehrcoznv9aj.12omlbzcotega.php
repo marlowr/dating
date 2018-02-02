@@ -1,8 +1,3 @@
-<!-- Ryan Marlow
-     IT 328 2/2/2018
-     This file contains the HTML to show the profile information.
-     -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,32 +37,32 @@
                         <table class="table">
                             <tbody>
                                 <tr>
-                                    <td><strong>Name:</strong> {{ $_SESSION['first-name'] }} {{ $_SESSION['last-name'] }}</td>
+                                    <td><strong>Name:</strong> <?= ($_SESSION['first-name']) ?> <?= ($_SESSION['last-name']) ?></td>
                                 </tr>
                                 <tr>
-                                    <td><strong>Gender:</strong> {{ $_SESSION['gender'] }}</td>
+                                    <td><strong>Gender:</strong> <?= ($_SESSION['gender']) ?></td>
                                 </tr>
                                 <tr>
-                                    <td><strong>Age:</strong> {{ $_SESSION['age'] }}</td>
+                                    <td><strong>Age:</strong> <?= ($_SESSION['age']) ?></td>
                                 </tr>
                                 <tr>
-                                    <td><strong>Phone:</strong> {{ $_SESSION['phone'] }}</td>
+                                    <td><strong>Phone:</strong> <?= ($_SESSION['phone']) ?></td>
                                 </tr>
                                 <tr>
-                                    <td><strong>Email:</strong> {{ $_SESSION['email'] }}</td>
+                                    <td><strong>Email:</strong> <?= ($_SESSION['email']) ?></td>
                                 </tr>
                                 <tr>
-                                    <td><strong>State:</strong> {{ $_SESSION['state'] }}</td>
+                                    <td><strong>State:</strong> <?= ($_SESSION['state']) ?></td>
                                 </tr>
                                 <tr>
-                                    <td><strong>Seeking:</strong> {{ $_SESSION['seeking'] }}</td>
+                                    <td><strong>Seeking:</strong> <?= ($_SESSION['seeking']) ?></td>
                                 </tr>
                                 <tr>
                                     <td><strong>Interests:</strong>
-                                        <repeat group="{{ $_SESSION['interests'] }}"
-                                                value="{{ @interest }}">
-                                            {{ @interest }}
-                                        </repeat>
+                                        <?php foreach (($_SESSION['interests']?:[]) as $interest): ?>
+                                            <?= ($interest)."
+" ?>
+                                        <?php endforeach; ?>
                                     </td>
                                 </tr>
                             </tbody>
@@ -80,7 +75,7 @@
                     </div>
                     <hr>
                     <label><strong>Biography</strong></label>
-                    <p>{{ $_SESSION['biography'] }}</p>
+                    <p><?= ($_SESSION['biography']) ?></p>
                 </div>
             </div>
             <hr>

@@ -1,8 +1,3 @@
-<!-- Ryan Marlow
-     IT 328 2/2/2018
-     This file contains the HTML to gather the interests on the dating website.
-     -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,51 +31,55 @@
 <div class="main">
     <div class="card-block">
         <h1>Interests</h1>
-        <check if="{{ @interesterror }}">
-            <span class="text-danger">{{ @interesterror }}</span>
-        </check>
+        <?php if ($interesterror): ?>
+            <span class="text-danger"><?= ($interesterror) ?></span>
+        <?php endif; ?>
         <hr>
         <form method="POST" action="./summary">
             <label><strong>In-door interests</strong></label>
             <br>
             <div class="row">
-                <repeat group="{{ @interestsin }}" value="{{ @interestin }}">
+                <?php foreach (($interestsin?:[]) as $interestin): ?>
                     <div class="form-check form-check-inline col">
                         <label class="form-check-label">
-                            <check if="{{ @interesetselected != null && in_array(@interestin, @interestselected)}}">
-                                <true>
+                            <?php if ($interesetselected != null && in_array($interestin, $interestselected)): ?>
+                                
                                     <input name="interests[]" class="form-check-input" type="checkbox"
-                                           value="{{ @interestin }}" checked="checked"> {{ @interestin }}
-                                </true>
-                                <false>
+                                           value="<?= ($interestin) ?>" checked="checked"> <?= ($interestin)."
+" ?>
+                                
+                                <?php else: ?>
                                     <input name="interests[]" class="form-check-input" type="checkbox"
-                                           value="{{ @interestin }}"> {{ @interestin }}
-                                </false>
-                            </check>
+                                           value="<?= ($interestin) ?>"> <?= ($interestin)."
+" ?>
+                                
+                            <?php endif; ?>
                         </label>
                     </div>
-                </repeat>
+                <?php endforeach; ?>
             </div>
             <br>
             <label><strong>Out-door interests</strong></label>
             <br>
             <div class="row">
-                <repeat group="{{ @interestsout }}" value="{{ @interestout }}">
+                <?php foreach (($interestsout?:[]) as $interestout): ?>
                     <div class="form-check form-check-inline col">
                         <label class="form-check-label">
-                            <check if="{{ @interesetselected != null && in_array(@interestout, @interestselected)}}">
-                                <true>
+                            <?php if ($interesetselected != null && in_array($interestout, $interestselected)): ?>
+                                
                                     <input name="interests[]" class="form-check-input" type="checkbox"
-                                           value="{{ @interestout }}" checked="checked"> {{ @interestout }}
-                                </true>
-                                <false>
+                                           value="<?= ($interestout) ?>" checked="checked"> <?= ($interestout)."
+" ?>
+                                
+                                <?php else: ?>
                                     <input name="interests[]" class="form-check-input" type="checkbox"
-                                           value="{{ @interestout }}"> {{ @interestout }}
-                                </false>
-                            </check>
+                                           value="<?= ($interestout) ?>"> <?= ($interestout)."
+" ?>
+                                
+                            <?php endif; ?>
                         </label>
                     </div>
-                </repeat>
+                <?php endforeach; ?>
             </div>
             <div class="d-flex flex-row-reverse">
                 <div class="p-2">

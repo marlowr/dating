@@ -1,4 +1,10 @@
 <?php
+/*
+ * Ryan Marlow
+ * IT328 - Dating Profile Assignment 2
+ * This file is routing page for the dating website, assigning variables and using the fat-free
+ * framework to navigate through the pages.
+ */
 //Require the autoload file
 require_once ('vendor/autoload.php');
 session_start();
@@ -19,18 +25,28 @@ $f3->set('interestsin', array('TV', 'Movies', 'Cooking','Board Games','Puzzles',
 $f3->set('interestsout', array('Hiking','Biking','Swimming','Collecting',
     'Walking','Climbing'));
 
+$f3->set('states',array('Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut',
+    'Delaware','District of Columbia','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa',
+    'Kansas','Kentucky','Louisiana','Maine','Montana','Nebraska','Nevada','New Hampshire','New Jersey',
+    'New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Maryland',
+    'Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Pennsylvania','Rhode Island',
+    'South Carolina','South Dakota','Tennessee','Texas'	,'Utah','Vermont','Virginia','Washington',
+    'West Virginia','Wisconsin','Wyoming'));
 
-//Define a page1 route
+
+//Home / Landing page.
 $f3->route('GET /', function() {
     $template = new Template();
     echo $template->render('pages/home.html');
 });
 
+//From home page to personal_info page
 $f3->route('GET /personal_info', function() {
     $template = new Template();
     echo $template->render('pages/personal_info.html');
 });
 
+//From personal_info page to profile page.
 $f3->route('POST /profile', function($f3) {
     include ("model/validate.php");
     $valid = true;
@@ -72,17 +88,16 @@ $f3->route('POST /profile', function($f3) {
     $f3->set('phone',$_SESSION['phone']);
 
     //validates gender
-    if($_POST['gender'] == 'male' || $_POST['gender'] == 'female') {
+    if($_POST['gender'] == 'Male' || $_POST['gender'] == 'Female') {
         $_SESSION['gender'] = $_POST['gender'];
     } else {
         $valid = false;
-        $f3->set('gendererror','Invalid gender. Nice try.');
+        $f3->set('gendererror','Invalid gender.');
     }
     $f3->set('gender',$_POST['gender']);
 
     //If all information is valid, continue with load, otherwise reload page.
     if($valid == true) {
-        print_r($_SESSION);
         $template = new Template();
         echo $template->render('pages/profile.html');
     } else {
@@ -91,32 +106,61 @@ $f3->route('POST /profile', function($f3) {
     }
 });
 
-
+//From profile page to interests page.
 $f3->route('POST /interests', function($f3) {
     include ("model/validate.php");
+    $valid = true;
+
     if(validEmail($_POST['email'])) {
         $_SESSION['email'] = $_POST['email'];
-        $f3->set('email',$_POST['email']);
+    } else {
+        $valid = false;
+        $f3->set('emailerror','Invalid email.');
     }
+    $f3->set('email',$_POST['email']);
 
     $_SESSION['state'] = $_POST['state'];
     $_SESSION['seeking'] = $_POST['seeking'];
     $_SESSION['biography'] = $_POST['biography'];
+    $f3->set('state',$_POST['state']);
+    $f3->set('seeking',$_POST['seeking']);
+    $f3->set('email',$_POST['email']);
+    $f3->set('biography',$_POST['biography']);
 
-
-    $template = new Template();
-    echo $template->render('pages/interests.html');
+    //If all information is valid, continue with load, otherwise reload page.
+    if($valid == true) {
+        print_r($_SESSION);
+        $template = new Template();
+        echo $template->render('pages/interests.html');
+    } else {
+        $template = new Template();
+        echo $template->render('pages/profile.html');
+    }
 });
 
+//From interests page to summary page.
 $f3->route('POST /summary', function($f3) {
     include ("model/validate.php");
-    $_SESSION['interests'] = $_POST['interests'];
-    foreach ($_SESSION as $value) {
+    $valid = true;
+
+    //Checks for valid interests input
+    if(validInterests($_POST['interests'])) {
+        $_SESSION['interests'] = $_POST['interests'];
+    } else {
+        $valid = false;
+        $f3->set('interesterror','Invalid interests.');
 
     }
-    print_r($_SESSION);
-    $template = new Template();
-    echo $template->render('pages/summary.html');
+    $f3->set('interestselected',array($_POST['interests']));
+
+    if($valid == true) {
+        $template = new Template();
+        echo $template->render('pages/summary.html');
+    } else {
+        $template = new Template();
+        echo $template->render('pages/interests.html');
+    }
+
 });
 
 //Run fat free
