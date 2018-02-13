@@ -101,6 +101,7 @@ $f3->route('POST /profile', function($f3) {
         $newMember = new PremiumMember($_POST['first-name'],$_POST['last-name'],$_POST['age'],
             $_POST['gender'],$_POST['phone']);
         $_SESSION['newMember'] = $newMember;
+        $_SESSION['premium'] = $_POST['premium'];
     } else if($_POST['premium'] != "Yes" && $valid == true) {
         $newMember = new Member($_POST['first-name'],$_POST['last-name'],$_POST['age'],
             $_POST['gender'],$_POST['phone']);
@@ -134,7 +135,12 @@ $f3->route('POST /interests', function($f3) {
 
     if($valid == true) {
         $member->setSeeking($_POST['seeking']);
+        $member->setState($_POST['state']);
+        $member->setBio($_POST['biography']);
+        $member->setEmail($_POST['email']);
     }
+
+    print_r($member);
     $_SESSION['state'] = $_POST['state'];
     $_SESSION['seeking'] = $_POST['seeking'];
     $_SESSION['biography'] = $_POST['biography'];
@@ -144,10 +150,12 @@ $f3->route('POST /interests', function($f3) {
     $f3->set('biography',$_POST['biography']);
 
     //If all information is valid, continue with load, otherwise reload page.
-    if($valid == true) {
-        print_r($_SESSION);
+    if($valid == true && $_SESSION['premium'] == "Yes") {
         $template = new Template();
         echo $template->render('pages/interests.html');
+    } else if($valid == true) {
+        $template = new Template();
+        echo $template->render('pages/summary.html');
     } else {
         $template = new Template();
         echo $template->render('pages/profile.html');
