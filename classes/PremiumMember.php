@@ -7,22 +7,18 @@
  */
 
 class PremiumMember extends Member {
-    private $_inDoorInterests;
-    private $_outDoorInterests;
+    private $_interests;
 
-    public function setIndoorInterests($inDoorInterests) {
-        $this->_inDoorInterests = $inDoorInterests;
+    public function __construct($fname,$lname,$age,$gender,$phone)
+    {
+        parent::__construct($fname,$lname,$age,$gender,$phone);
     }
 
-    public function getIndoorInterests(){
-        return $this->_inDoorInterests;
+    public function setInterests($interests) {
+        $this->_interests = $interests;
     }
 
-    public function setOutDoorInterests($outDoorInterests) {
-        $this->_inDoorInterests = $outDoorInterests;
-    }
-
-    public function getOutDoorInterests() {
-        return $this->_outDoorInterests;
+    public function getInterests(){
+        return $this->_interests;
     }
 }

@@ -102,10 +102,11 @@ $f3->route('POST /profile', function($f3) {
             $_POST['gender'],$_POST['phone']);
         $_SESSION['newMember'] = $newMember;
         $_SESSION['premium'] = $_POST['premium'];
-    } else if($_POST['premium'] != "Yes" && $valid == true) {
+    } else if($valid == true) {
         $newMember = new Member($_POST['first-name'],$_POST['last-name'],$_POST['age'],
             $_POST['gender'],$_POST['phone']);
         $_SESSION['newMember'] = $newMember;
+        $_SESSION['premium'] = "No";
     }
 
     //If all information is valid, continue with load, otherwise reload page.
@@ -140,7 +141,6 @@ $f3->route('POST /interests', function($f3) {
         $member->setEmail($_POST['email']);
     }
 
-    print_r($member);
     $_SESSION['state'] = $_POST['state'];
     $_SESSION['seeking'] = $_POST['seeking'];
     $_SESSION['biography'] = $_POST['biography'];
@@ -148,6 +148,8 @@ $f3->route('POST /interests', function($f3) {
     $f3->set('seeking',$_POST['seeking']);
     $f3->set('email',$_POST['email']);
     $f3->set('biography',$_POST['biography']);
+
+    $_SESSION['newMember'] = $member;
 
     //If all information is valid, continue with load, otherwise reload page.
     if($valid == true && $_SESSION['premium'] == "Yes") {
@@ -167,15 +169,19 @@ $f3->route('POST /summary', function($f3) {
     include ("model/validate.php");
     $valid = true;
 
+    $member = $_SESSION['newMember'];
+
     //Checks for valid interests input
     if(validInterests($_POST['interests'])) {
         $_SESSION['interests'] = $_POST['interests'];
     } else {
         $valid = false;
         $f3->set('interesterror','Invalid interests.');
-
     }
     $f3->set('interestselected',array($_POST['interests']));
+
+    $member->setInterests($_SESSION['interests']);
+
 
     if($valid == true) {
         $template = new Template();
