@@ -96,6 +96,17 @@ $f3->route('POST /profile', function($f3) {
     }
     $f3->set('gender',$_POST['gender']);
 
+    //Add information to member.
+    if($_POST['premium'] == "Yes" && $valid == true) {
+        $newMember = new PremiumMember($_POST['first-name'],$_POST['last-name'],$_POST['age'],
+            $_POST['gender'],$_POST['phone']);
+        $_SESSION['newMember'] = $newMember;
+    } else if($_POST['premium'] != "Yes" && $valid == true) {
+        $newMember = new Member($_POST['first-name'],$_POST['last-name'],$_POST['age'],
+            $_POST['gender'],$_POST['phone']);
+        $_SESSION['newMember'] = $newMember;
+    }
+
     //If all information is valid, continue with load, otherwise reload page.
     if($valid == true) {
         $template = new Template();
@@ -111,6 +122,8 @@ $f3->route('POST /interests', function($f3) {
     include ("model/validate.php");
     $valid = true;
 
+    $member = $_SESSION['newMember'];
+
     if(validEmail($_POST['email'])) {
         $_SESSION['email'] = $_POST['email'];
     } else {
@@ -119,6 +132,9 @@ $f3->route('POST /interests', function($f3) {
     }
     $f3->set('email',$_POST['email']);
 
+    if($valid == true) {
+        $member->setSeeking($_POST['seeking']);
+    }
     $_SESSION['state'] = $_POST['state'];
     $_SESSION['seeking'] = $_POST['seeking'];
     $_SESSION['biography'] = $_POST['biography'];
