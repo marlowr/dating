@@ -182,6 +182,7 @@ $f3->route('POST /summary', function($f3) {
 
     $member->setInterests($_SESSION['interests']);
 
+    $_SESSION['newMember'] = $member;
 
     if($valid == true) {
         $template = new Template();
