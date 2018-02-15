@@ -7,7 +7,7 @@
  */
 
 class PremiumMember extends Member {
-    private $_interests;
+    protected $_interests;
 
     public function __construct($fname,$lname,$age,$gender,$phone)
     {

@@ -71,7 +71,8 @@
                 <?php foreach (($interestsout?:[]) as $interestout): ?>
                     <div class="form-check form-check-inline col">
                         <label class="form-check-label">
-                            <?php if ($interesetselected != null && in_array($interestout, $interestselected)): ?>
+                            <?php if ($_SESSION['newMember']->getInterests() != null &&
+                            in_array($interestout, $_SESSION['newMember']->getInterests())): ?>
                                 
                                     <input name="interests[]" class="form-check-input" type="checkbox"
                                            value="<?= ($interestout) ?>" checked="checked"> <?= ($interestout)."

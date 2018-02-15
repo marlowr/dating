@@ -15,16 +15,20 @@ $f3 = Base::instance();
 //Set debug level
 $f3->set('DEBUG',3);
 
+//Sets all interests
 $f3->set('interests', array('TV', 'Movies', 'Cooking','Board Games','Puzzles',
     'Reading','Playing Cards','Video Games','Hiking','Biking','Swimming',
     'Collecting','Walking','Climbing'));
 
+//Sets indoor interests
 $f3->set('interestsin', array('TV', 'Movies', 'Cooking','Board Games','Puzzles',
     'Reading','Playing Cards','Video Games'));
 
+//Sets outdoor interests
 $f3->set('interestsout', array('Hiking','Biking','Swimming','Collecting',
     'Walking','Climbing'));
 
+//Sets states variables
 $f3->set('states',array('Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut',
     'Delaware','District of Columbia','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa',
     'Kansas','Kentucky','Louisiana','Maine','Montana','Nebraska','Nevada','New Hampshire','New Jersey',
@@ -81,18 +85,20 @@ $f3->route('POST /profile', function($f3) {
         $f3->set('gendererror','Invalid gender.');
     }
 
+
     //Add information to member.
     if($_POST['premium'] == "Yes" && $valid == true) {
         $newMember = new PremiumMember($_POST['first-name'],$_POST['last-name'],$_POST['age'],
                                         $_POST['gender'],$_POST['phone']);
-        $_SESSION['newMember'] = $newMember;
         $_SESSION['premium'] = "Yes";
     } else if($valid == true) {
         $newMember = new Member($_POST['first-name'],$_POST['last-name'],$_POST['age'],
                                     $_POST['gender'],$_POST['phone']);
-        $_SESSION['newMember'] = $newMember;
         $_SESSION['premium'] = "No";
     }
+
+    //Assigns newMember variable to the session.
+    $_SESSION['newMember'] = $newMember;
 
     //If all information is valid, continue with load, otherwise reload page.
     if($valid == true) {
@@ -109,19 +115,22 @@ $f3->route('POST /interests', function($f3) {
     include ("model/validate.php");
     $valid = true;
 
+    //Assigns the variable newMember from the session variable.
     $newMember = $_SESSION['newMember'];
 
+    //Checks for valid email.
     if(!validEmail($_POST['email'])) {
         $valid = false;
         $f3->set('emailerror','Invalid email.');
     }
 
+    //Adds new information to the newMember object.
     $newMember->setSeeking($_POST['seeking']);
     $newMember->setState($_POST['state']);
     $newMember->setBio($_POST['biography']);
     $newMember->setEmail($_POST['email']);
 
-
+    //Reassigns the newMember object to the session.
     $_SESSION['newMember'] = $newMember;
 
     //If all information is valid, continue with load, otherwise reload page.
@@ -142,6 +151,7 @@ $f3->route('POST /summary', function($f3) {
     include ("model/validate.php");
     $valid = true;
 
+    //Grabs member object from session.
     $newMember = $_SESSION['newMember'];
 
     //Checks for valid interests input
@@ -150,10 +160,10 @@ $f3->route('POST /summary', function($f3) {
         $f3->set('interesterror','Invalid interests.');
     }
 
-    $newMember->setInterests($_SESSION['interests']);
-
+    //Sets interests to the newMember variable.
+    $newMember->setInterests($_POST['interests']);
     $_SESSION['newMember'] = $newMember;
-
+    
     if($valid == true) {
         $template = new Template();
         echo $template->render('pages/summary.html');
@@ -161,7 +171,6 @@ $f3->route('POST /summary', function($f3) {
         $template = new Template();
         echo $template->render('pages/interests.html');
     }
-
 });
 
 //Run fat free
