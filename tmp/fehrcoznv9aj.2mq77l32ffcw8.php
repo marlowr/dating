@@ -1,3 +1,8 @@
+<!-- Ryan Marlow
+     IT 328 2/2/2018
+     This file contains the HTML to gather the interests on the dating website.
+     -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,7 +47,8 @@
                 <?php foreach (($interestsin?:[]) as $interestin): ?>
                     <div class="form-check form-check-inline col">
                         <label class="form-check-label">
-                            <?php if ($interesetselected != null && in_array($interestin, $interestselected)): ?>
+                            <?php if ($_SESSION['newMember']->getInterests() !=
+                            null && in_array($interestin, $_SESSION['newMember']->getInterests())): ?>
                                 
                                     <input name="interests[]" class="form-check-input" type="checkbox"
                                            value="<?= ($interestin) ?>" checked="checked"> <?= ($interestin)."

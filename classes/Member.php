@@ -18,16 +18,16 @@ class Member
     protected $seeking;
     protected $bio;
 
-    public function Member($fname,$lname,$age,$gender,$phone) {
+    public function __construct($fname,$lname,$age,$gender,$phone) {
         $this->fname = $fname;
         $this->lname = $lname;
         $this->age = $age;
         $this->gender = $gender;
         $this->phone = $phone;
     }
-    public function getFname($fname)
+    public function getFname()
     {
-        return $fname;
+        return $this->fname;
     }
 
     public function setFname($fname)
@@ -35,9 +35,9 @@ class Member
         $this->$fname = $fname;
     }
 
-    public function getLname($lname)
+    public function getLname()
     {
-        return $lname;
+        return $this->lname;
     }
 
     public function setLname($lname)
@@ -45,9 +45,9 @@ class Member
         $this->lname = $lname;
     }
 
-    public function getGender($gender)
+    public function getGender()
     {
-        return $gender;
+        return $this->gender;
     }
 
     public function setGender($gender)
@@ -55,9 +55,9 @@ class Member
         $this->gender = $gender;
     }
 
-    public function getPhone($phone)
+    public function getPhone()
     {
-        return $phone;
+        return $this->phone;
     }
 
     public function setPhone($phone)
@@ -65,9 +65,9 @@ class Member
         $this->phone = $phone;
     }
 
-    public function getAge($age)
+    public function getAge()
     {
-        return $age;
+        return $this->age;
     }
 
     public function setAge($age)
@@ -75,36 +75,36 @@ class Member
         $this->age = $age;
     }
 
-    public function getEmail($email)
+    public function getEmail()
     {
-        return $email;
+        return $this->email;
     }
 
     public function setEmail($email)
     {
         $this->email = $email;
     }
-    public function getState($state)
+    public function getState()
     {
-        return $state;
+        return $this->state;
     }
 
     public function setState($state)
     {
         $this->state = $state;
     }
-    public function getSeeking($seeking)
+    public function getSeeking()
     {
-        return $seeking;
+        return $this->seeking;
     }
 
     public function setSeeking($seeking)
     {
         $this->seeking = $seeking;
     }
-    public function getBio($bio)
+    public function getBio()
     {
-        return $bio;
+        return $this->bio;
     }
 
     public function setBio($bio)

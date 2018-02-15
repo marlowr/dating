@@ -1,3 +1,8 @@
+<!-- Ryan Marlow
+     IT 328 2/2/2018
+     This file contains the HTML to show the profile information.
+     -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,34 +42,36 @@
                         <table class="table">
                             <tbody>
                                 <tr>
-                                    <td><strong>Name:</strong> <?= ($_SESSION['first-name']) ?> <?= ($_SESSION['last-name']) ?></td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Gender:</strong> <?= ($_SESSION['gender']) ?></td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Age:</strong> <?= ($_SESSION['age']) ?></td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Phone:</strong> <?= ($_SESSION['phone']) ?></td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Email:</strong> <?= ($_SESSION['email']) ?></td>
-                                </tr>
-                                <tr>
-                                    <td><strong>State:</strong> <?= ($_SESSION['state']) ?></td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Seeking:</strong> <?= ($_SESSION['seeking']) ?></td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Interests:</strong>
-                                        <?php foreach (($_SESSION['interests']?:[]) as $interest): ?>
-                                            <?= ($interest)."
+                                    <td><strong>Name:</strong> <?= ($_SESSION['newMember']->getFname())."
 " ?>
-                                        <?php endforeach; ?>
-                                    </td>
+                                        <?= ($_SESSION['newMember']->getLname()) ?></td>
                                 </tr>
+                                <tr>
+                                    <td><strong>Gender:</strong> <?= ($_SESSION['newMember']->getGender()) ?></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Age:</strong> <?= ($_SESSION['newMember']->getAge()) ?></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Phone:</strong> <?= ($_SESSION['newMember']->getPhone()) ?></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Email:</strong> <?= ($_SESSION['newMember']->getEmail()) ?></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>State:</strong> <?= ($_SESSION['newMember']->getState()) ?></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Seeking:</strong> <?= ($_SESSION['newMember']->getSeeking()) ?></td>
+                                </tr>
+                                    <tr>
+                                        <td><strong>Interests:</strong>
+                                            <?php foreach (($_SESSION['newMember']->getInterests()?:[]) as $interest): ?>
+                                                <?= ($interest)."
+" ?>
+                                            <?php endforeach; ?>
+                                        </td>
+                                    </tr>
                             </tbody>
                         </table>
                     </div>
@@ -75,7 +82,7 @@
                     </div>
                     <hr>
                     <label><strong>Biography</strong></label>
-                    <p><?= ($_SESSION['biography']) ?></p>
+                    <p><?= ($_SESSION['newMember']->getBio()) ?></p>
                 </div>
             </div>
             <hr>

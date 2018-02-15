@@ -42,34 +42,35 @@
                         <table class="table">
                             <tbody>
                                 <tr>
-                                    <td><strong>Name:</strong> {{ $_SESSION['first-name'] }} {{ $_SESSION['last-name'] }}</td>
+                                    <td><strong>Name:</strong> {{ $_SESSION['newMember']->getFname() }}
+                                        {{ $_SESSION['newMember']->getLname() }}</td>
                                 </tr>
                                 <tr>
-                                    <td><strong>Gender:</strong> {{ $_SESSION['gender'] }}</td>
+                                    <td><strong>Gender:</strong> {{$_SESSION['newMember']->getGender() }}</td>
                                 </tr>
                                 <tr>
-                                    <td><strong>Age:</strong> {{ $_SESSION['age'] }}</td>
+                                    <td><strong>Age:</strong> {{ $_SESSION['newMember']->getAge() }}</td>
                                 </tr>
                                 <tr>
-                                    <td><strong>Phone:</strong> {{ $_SESSION['phone'] }}</td>
+                                    <td><strong>Phone:</strong> {{ $_SESSION['newMember']->getPhone() }}</td>
                                 </tr>
                                 <tr>
-                                    <td><strong>Email:</strong> {{ $_SESSION['email'] }}</td>
+                                    <td><strong>Email:</strong> {{ $_SESSION['newMember']->getEmail() }}</td>
                                 </tr>
                                 <tr>
-                                    <td><strong>State:</strong> {{ $_SESSION['state'] }}</td>
+                                    <td><strong>State:</strong> {{ $_SESSION['newMember']->getState() }}</td>
                                 </tr>
                                 <tr>
-                                    <td><strong>Seeking:</strong> {{ $_SESSION['seeking'] }}</td>
+                                    <td><strong>Seeking:</strong> {{ $_SESSION['newMember']->getSeeking() }}</td>
                                 </tr>
-                                <tr>
-                                    <td><strong>Interests:</strong>
-                                        <repeat group="{{ $_SESSION['interests'] }}"
-                                                value="{{ @interest }}">
-                                            {{ @interest }}
-                                        </repeat>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td><strong>Interests:</strong>
+                                            <repeat group="{{ $_SESSION['newMember']->getInterests() }}"
+                                                    value="{{ @interest }}">
+                                                {{ @interest }}
+                                            </repeat>
+                                        </td>
+                                    </tr>
                             </tbody>
                         </table>
                     </div>
@@ -80,7 +81,7 @@
                     </div>
                     <hr>
                     <label><strong>Biography</strong></label>
-                    <p>{{ $_SESSION['biography'] }}</p>
+                    <p>{{ $_SESSION['newMember']->getBio() }}</p>
                 </div>
             </div>
             <hr>

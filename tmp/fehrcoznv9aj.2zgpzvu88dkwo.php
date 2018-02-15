@@ -1,3 +1,8 @@
+<!-- Ryan Marlow
+     IT 328 2/2/2018
+     This file contains the HTML to gather the personal info on the dating website.
+     -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,7 +47,7 @@
                             <?php endif; ?>
                         </label>
                         <input name="first-name" type="text" class="form-control" id="first-name"
-                                       placeholder="First" value="<?= ($firstname) ?>">
+                                       placeholder="First" value="<?= ($_SESSION['newMember']->getFname()) ?>">
 
                     </div>
                     <div class="form-group">
@@ -52,7 +57,7 @@
                             <?php endif; ?>
                         </label>
                         <input name="last-name" type="text" class="form-control" id="last-name"
-                                       placeholder="Last" value="<?= ($lastname) ?>">
+                                       placeholder="Last" value="<?= ($_SESSION['newMember']->getLname()) ?>">
                     </div>
                     <div class="form-group">
                         <label for="age"><strong>Age</strong>
@@ -61,7 +66,7 @@
                             <?php endif; ?>
                         </label>
                         <input name="age" type="text" class="form-control" id="age"
-                                       placeholder="Age" value="<?= ($age) ?>">
+                                       placeholder="Age" value="<?= ($_SESSION['newMember']->getAge()) ?>">
                     </div>
 
                     <label><strong>Gender</strong>
@@ -72,7 +77,7 @@
                     <br>
                     <div class="form-check form-check-inline">
                         <label class="form-check-label">
-                            <?php if ($gender=='Male'): ?>
+                            <?php if ($_SESSION['newMember']->getGender()=='Male'): ?>
                                 
                                 <input class="form-check-input" type="radio"
                                        name="gender" value="Male" checked=""> Male
@@ -86,7 +91,7 @@
                     </div>
                     <div class="form-check form-check-inline">
                         <label class="form-check-label">
-                            <?php if ($gender=='Female'): ?>
+                            <?php if ($_SESSION['newMember']->getGender()=='Female'): ?>
                                 
                                     <input class="form-check-input" type="radio"
                                            name="gender" value="Female" checked=""> Female
@@ -99,13 +104,31 @@
                         </label>
                     </div>
                     <div class="form-group">
-                        <label for="age"><strong>Phone Number</strong>
+                        <label for="phone"><strong>Phone Number</strong>
                             <?php if ($phoneerror): ?>
                                 <span class="text-danger"><?= ($phoneerror) ?></span>
                             <?php endif; ?>
                         </label>
                         <input name="phone" type="text" class="form-control"
-                                       id="phone" placeholder="123-456-7890" value="<?= ($phone) ?>">
+                                       id="phone" placeholder="123-456-7890"
+                               value="<?= ($_SESSION['newMember']->getPhone()) ?>">
+                    </div>
+                    <label><strong>Premium Membership</strong></label><br>
+                    <div class="form-check form-check-inline">
+                        <label class="form-check-label">
+                            <?php if ($_SESSION['premium']=='Yes'): ?>
+                                
+                                    <input class="form-check-input" type="checkbox"
+                                           name="premium" value="Yes" checked="">
+                                    Sign me up for a premium account!
+                                
+                                <?php else: ?>
+                                    <input class="form-check-input" type="checkbox"
+                                           name="premium" value="Yes">
+                                    Sign me up for a premium account!
+                                
+                            <?php endif; ?>
+                        </label>
                     </div>
             </div>
             <div class="col">

@@ -1,3 +1,8 @@
+<!-- Ryan Marlow
+     IT 328 2/2/2018
+     This file contains the HTML to gather the profile information on the dating website.
+     -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +17,9 @@
 <body>
 <!-- Main information Div -->
 <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <a class="navbar-brand" href="#">Forest</a>
@@ -41,7 +48,9 @@
                                 <span class="text-danger"><?= ($emailerror) ?></span>
                             <?php endif; ?>
                         </label>
-                        <input name="email" type="text" class="form-control" id="email" placeholder="example@mail.com" value="<?= ($email) ?>">
+                        <input name="email" type="text" class="form-control" id="email"
+                               placeholder="example@mail.com"
+                               value="<?= ($_SESSION['newMember']->getEmail()) ?>">
                     </div>
                     <div class="form-group">
                         <div class="form-group">
@@ -49,9 +58,10 @@
                             <select name="state" class="form-control" id="state">
                                 <option>Select</option>
                                 <?php foreach (($states?:[]) as $value): ?>
-                                    <?php if ($value == $state): ?>
+                                    <?php if ($value == $_SESSION['newMember']->getState()): ?>
                                         
-                                            <option value="<?= ($value) ?>" selected="selected"><?= ($value) ?></option>
+                                            <option value="<?= ($value) ?>"
+                                                    selected="selected"><?= ($value) ?></option>
                                         
                                         <?php else: ?>
                                             <option value="<?= ($value) ?>"><?= ($value) ?></option>
@@ -66,7 +76,7 @@
                     <br>
                     <div class="form-check form-check-inline">
                         <label class="form-check-label">
-                            <?php if ($seeking=='Male'): ?>
+                            <?php if ($_SESSION['newMember']->getSeeking()=='Male'): ?>
                                 
                                     <input class="form-check-input" type="radio"
                                            name="seeking" value="Male" checked=""> Male
@@ -80,7 +90,7 @@
                     </div>
                     <div class="form-check form-check-inline">
                         <label class="form-check-label">
-                            <?php if ($seeking=='Female'): ?>
+                            <?php if ($_SESSION['newMember']->getSeeking()=='Female'): ?>
                                 
                                     <input class="form-check-input" type="radio"
                                            name="seeking" value="Female" checked=""> Female
@@ -96,7 +106,8 @@
             <div class="col">
                 <label for="biography"><strong>Biography</strong></label>
                 <textarea name="biography" placeholder="Describe yourself here..."
-                          class="form-control" id="biography" rows="6" cols="70"><?= ($biography) ?></textarea>
+                          class="form-control" id="biography" rows="6"
+                          cols="70"><?= ($_SESSION['newMember']->getBio()) ?></textarea>
             </div>
         </div>
         <div class="d-flex flex-row-reverse">

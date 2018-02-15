@@ -52,59 +52,44 @@ $f3->route('POST /profile', function($f3) {
     $valid = true;
 
     //Validates first name
-    if(validName($_POST['first-name'])) {
-        $_SESSION['first-name'] = $_POST['first-name'];
-    } else {
+    if(!validName($_POST['first-name'])) {
         $valid = false;
         $f3->set('firsterror','Invalid first name.');
     }
-    $f3->set('firstname',$_POST['first-name']);
 
     //validates last name
-    if(validName($_POST['last-name'])) {
-        $_SESSION['last-name'] = $_POST['last-name'];
-    } else {
+    if(!validName($_POST['last-name'])) {
         $valid = false;
         $f3->set('lasterror','Invalid last name.');
     }
-    $f3->set('lastname',$_POST['last-name']);
 
     //Validates age
-    if(validAge($_POST['age'])) {
-        $_SESSION['age'] = $_POST['age'];
-    } else {
+    if(!validAge($_POST['age'])) {
         $valid = false;
         $f3->set('ageerror','Invalid age.');
     }
-    $f3->set('age',$_POST['age']);
 
     //Validates phone number
-    if(validPhone($_POST['phone'])) {
-        $_SESSION['phone'] = $_POST['phone'];
-    } else {
+    if(!validPhone($_POST['phone'])) {
         $valid = false;
         $f3->set('phoneerror','Invalid phone number');
     }
-    $f3->set('phone',$_SESSION['phone']);
 
     //validates gender
-    if($_POST['gender'] == 'Male' || $_POST['gender'] == 'Female') {
-        $_SESSION['gender'] = $_POST['gender'];
-    } else {
+    if(!($_POST['gender'] == 'Male' || $_POST['gender'] == 'Female')) {
         $valid = false;
         $f3->set('gendererror','Invalid gender.');
     }
-    $f3->set('gender',$_POST['gender']);
 
     //Add information to member.
     if($_POST['premium'] == "Yes" && $valid == true) {
         $newMember = new PremiumMember($_POST['first-name'],$_POST['last-name'],$_POST['age'],
-            $_POST['gender'],$_POST['phone']);
+                                        $_POST['gender'],$_POST['phone']);
         $_SESSION['newMember'] = $newMember;
-        $_SESSION['premium'] = $_POST['premium'];
+        $_SESSION['premium'] = "Yes";
     } else if($valid == true) {
         $newMember = new Member($_POST['first-name'],$_POST['last-name'],$_POST['age'],
-            $_POST['gender'],$_POST['phone']);
+                                    $_POST['gender'],$_POST['phone']);
         $_SESSION['newMember'] = $newMember;
         $_SESSION['premium'] = "No";
     }
@@ -124,32 +109,20 @@ $f3->route('POST /interests', function($f3) {
     include ("model/validate.php");
     $valid = true;
 
-    $member = $_SESSION['newMember'];
+    $newMember = $_SESSION['newMember'];
 
-    if(validEmail($_POST['email'])) {
-        $_SESSION['email'] = $_POST['email'];
-    } else {
+    if(!validEmail($_POST['email'])) {
         $valid = false;
         $f3->set('emailerror','Invalid email.');
     }
-    $f3->set('email',$_POST['email']);
 
-    if($valid == true) {
-        $member->setSeeking($_POST['seeking']);
-        $member->setState($_POST['state']);
-        $member->setBio($_POST['biography']);
-        $member->setEmail($_POST['email']);
-    }
+    $newMember->setSeeking($_POST['seeking']);
+    $newMember->setState($_POST['state']);
+    $newMember->setBio($_POST['biography']);
+    $newMember->setEmail($_POST['email']);
 
-    $_SESSION['state'] = $_POST['state'];
-    $_SESSION['seeking'] = $_POST['seeking'];
-    $_SESSION['biography'] = $_POST['biography'];
-    $f3->set('state',$_POST['state']);
-    $f3->set('seeking',$_POST['seeking']);
-    $f3->set('email',$_POST['email']);
-    $f3->set('biography',$_POST['biography']);
 
-    $_SESSION['newMember'] = $member;
+    $_SESSION['newMember'] = $newMember;
 
     //If all information is valid, continue with load, otherwise reload page.
     if($valid == true && $_SESSION['premium'] == "Yes") {
@@ -169,20 +142,17 @@ $f3->route('POST /summary', function($f3) {
     include ("model/validate.php");
     $valid = true;
 
-    $member = $_SESSION['newMember'];
+    $newMember = $_SESSION['newMember'];
 
     //Checks for valid interests input
-    if(validInterests($_POST['interests'])) {
-        $_SESSION['interests'] = $_POST['interests'];
-    } else {
+    if(!validInterests($_POST['interests'])) {
         $valid = false;
         $f3->set('interesterror','Invalid interests.');
     }
-    $f3->set('interestselected',array($_POST['interests']));
 
-    $member->setInterests($_SESSION['interests']);
+    $newMember->setInterests($_SESSION['interests']);
 
-    $_SESSION['newMember'] = $member;
+    $_SESSION['newMember'] = $newMember;
 
     if($valid == true) {
         $template = new Template();

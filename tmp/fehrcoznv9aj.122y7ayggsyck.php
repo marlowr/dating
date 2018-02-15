@@ -1,3 +1,8 @@
+<!-- Ryan Marlow
+     IT 328 2/2/2018
+     This file contains the HTML to show the landing page of the dating website.
+     -->
+
 <!doctype html>
 <html lang="en">
 <head>
