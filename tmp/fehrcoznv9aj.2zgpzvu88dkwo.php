@@ -46,9 +46,16 @@
                                 <span class="text-danger"><?= ($firsterror) ?></span>
                             <?php endif; ?>
                         </label>
-                        <input name="first-name" type="text" class="form-control" id="first-name"
-                                       placeholder="First" value="<?= ($_SESSION['newMember']->getFname()) ?>">
-
+                        <?php if ($first != null): ?>
+                            
+                                <input name="first-name" type="text" class="form-control" id="first-name"
+                                       placeholder="First" value="<?= ($first) ?>">
+                            
+                            <?php else: ?>
+                                <input name="first-name" type="text" class="form-control" id="first-name"
+                                       placeholder="First">
+                            
+                        <?php endif; ?>
                     </div>
                     <div class="form-group">
                         <label for="last-name"><strong>Last Name</strong>
@@ -56,8 +63,17 @@
                                 <span class="text-danger"><?= ($lasterror) ?></span>
                             <?php endif; ?>
                         </label>
-                        <input name="last-name" type="text" class="form-control" id="last-name"
-                                       placeholder="Last" value="<?= ($_SESSION['newMember']->getLname()) ?>">
+                        <?php if ($last != null): ?>
+                            
+                                <input name="last-name" type="text" class="form-control" id="last-name"
+                                       placeholder="Last" value="<?= ($last) ?>">
+                            
+                            <?php else: ?>
+                                <input name="last-name" type="text" class="form-control" id="last-name"
+                                       placeholder="Last">
+                            
+                        <?php endif; ?>
+
                     </div>
                     <div class="form-group">
                         <label for="age"><strong>Age</strong>
@@ -65,8 +81,16 @@
                                 <span class="text-danger"><?= ($ageerror) ?></span>
                             <?php endif; ?>
                         </label>
-                        <input name="age" type="text" class="form-control" id="age"
-                                       placeholder="Age" value="<?= ($_SESSION['newMember']->getAge()) ?>">
+                        <?php if ($age != null): ?>
+                            
+                                <input name="age" type="text" class="form-control" id="age"
+                                       placeholder="Age" value="<?= ($age) ?>">
+                            
+                            <?php else: ?>
+                                <input name="age" type="text" class="form-control" id="age"
+                                       placeholder="Age">
+                            
+                        <?php endif; ?>
                     </div>
 
                     <label><strong>Gender</strong>
@@ -77,7 +101,7 @@
                     <br>
                     <div class="form-check form-check-inline">
                         <label class="form-check-label">
-                            <?php if ($_SESSION['newMember']->getGender()=='Male'): ?>
+                            <?php if ($gender=='Male'): ?>
                                 
                                 <input class="form-check-input" type="radio"
                                        name="gender" value="Male" checked=""> Male
@@ -91,7 +115,7 @@
                     </div>
                     <div class="form-check form-check-inline">
                         <label class="form-check-label">
-                            <?php if ($_SESSION['newMember']->getGender()=='Female'): ?>
+                            <?php if ($gender=='Female'): ?>
                                 
                                     <input class="form-check-input" type="radio"
                                            name="gender" value="Female" checked=""> Female
@@ -109,14 +133,23 @@
                                 <span class="text-danger"><?= ($phoneerror) ?></span>
                             <?php endif; ?>
                         </label>
-                        <input name="phone" type="text" class="form-control"
+                        <?php if ($phone != null): ?>
+                            
+                                <input name="phone" type="text" class="form-control"
                                        id="phone" placeholder="123-456-7890"
-                               value="<?= ($_SESSION['newMember']->getPhone()) ?>">
+                                       value="<?= ($phone) ?>">
+                            
+                            <?php else: ?>
+                                <input name="phone" type="text" class="form-control"
+                                       id="phone" placeholder="123-456-7890">
+                            
+                        <?php endif; ?>
+
                     </div>
                     <label><strong>Premium Membership</strong></label><br>
                     <div class="form-check form-check-inline">
                         <label class="form-check-label">
-                            <?php if ($_SESSION['premium']=='Yes'): ?>
+                            <?php if ($premium == 'Yes'): ?>
                                 
                                     <input class="form-check-input" type="checkbox"
                                            name="premium" value="Yes" checked="">

@@ -1,13 +1,15 @@
 <?php
-/*
- * Ryan Marlow
- * IT328 - Dating Profile Assignment 2
- * This file is routing page for the dating website, assigning variables and using the fat-free
- * framework to navigate through the pages.
+/**
+ * Hub for Forest Dating website.
+ * @author Ryan Marlow <rmarlow@mail.greenriver.edu>
  */
 //Require the autoload file
 require_once ('vendor/autoload.php');
-session_start();
+//session_start();
+
+//Turn on error reporting
+//error_reporting(E_ALL);
+//ini_set('display_errors', TRUE);
 
 //Create an instance of the Base class
 $f3 = Base::instance();
@@ -37,6 +39,12 @@ $f3->set('states',array('Alabama','Alaska','Arizona','Arkansas','California','Co
     'South Carolina','South Dakota','Tennessee','Texas'	,'Utah','Vermont','Virginia','Washington',
     'West Virginia','Wisconsin','Wyoming'));
 
+$f3->set('first',null);
+$f3->set('last',null);
+$f3->set('age',null);
+$f3->set('gender',null);
+$f3->set('phone',null);
+$f3->set('premium',null);
 
 //Home / Landing page.
 $f3->route('GET /', function() {
@@ -46,6 +54,8 @@ $f3->route('GET /', function() {
 
 //From home page to personal_info page
 $f3->route('GET /personal_info', function() {
+    $_SESSION['newMember'] = new Member("","","","","");
+    $_SESSION['premium'] = "";
     $template = new Template();
     echo $template->render('pages/personal_info.html');
 });
@@ -85,7 +95,9 @@ $f3->route('POST /profile', function($f3) {
         $f3->set('gendererror','Invalid gender.');
     }
 
-
+    if($_POST['premium'] == "Yes") {
+        $f3->set('premium','Yes');
+    }
     //Add information to member.
     if($_POST['premium'] == "Yes" && $valid == true) {
         $newMember = new PremiumMember($_POST['first-name'],$_POST['last-name'],$_POST['age'],
@@ -96,6 +108,13 @@ $f3->route('POST /profile', function($f3) {
                                     $_POST['gender'],$_POST['phone']);
         $_SESSION['premium'] = "No";
     }
+
+    $f3->set('first',$_POST['first-name']);
+    $f3->set('last',$_POST['last-name']);
+    $f3->set('age',$_POST['age']);
+    $f3->set('gender',$_POST['gender']);
+    $f3->set('phone',$_POST['phone']);
+
 
     //Assigns newMember variable to the session.
     $_SESSION['newMember'] = $newMember;
@@ -163,7 +182,7 @@ $f3->route('POST /summary', function($f3) {
     //Sets interests to the newMember variable.
     $newMember->setInterests($_POST['interests']);
     $_SESSION['newMember'] = $newMember;
-    
+
     if($valid == true) {
         $template = new Template();
         echo $template->render('pages/summary.html');
