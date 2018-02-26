@@ -1,15 +1,19 @@
 <?php
-/**
- * Hub for Forest Dating website.
- * @author Ryan Marlow <rmarlow@mail.greenriver.edu>
+/*
+ * Ryan Marlow
+ * IT328 - Dating Profile Assignment 2
+ * This file is routing page for the dating website, assigning variables and using the fat-free
+ * framework to navigate through the pages.
  */
 //Require the autoload file
 require_once ('vendor/autoload.php');
-//session_start();
+require('model/Db.php');
+session_start();
 
 //Turn on error reporting
-//error_reporting(E_ALL);
-//ini_set('display_errors', TRUE);
+error_reporting(E_ALL);
+ini_set('display_errors', TRUE);
+$database = new Db();
 
 //Create an instance of the Base class
 $f3 = Base::instance();
@@ -39,12 +43,6 @@ $f3->set('states',array('Alabama','Alaska','Arizona','Arkansas','California','Co
     'South Carolina','South Dakota','Tennessee','Texas'	,'Utah','Vermont','Virginia','Washington',
     'West Virginia','Wisconsin','Wyoming'));
 
-$f3->set('first',null);
-$f3->set('last',null);
-$f3->set('age',null);
-$f3->set('gender',null);
-$f3->set('phone',null);
-$f3->set('premium',null);
 
 //Home / Landing page.
 $f3->route('GET /', function() {
@@ -95,9 +93,7 @@ $f3->route('POST /profile', function($f3) {
         $f3->set('gendererror','Invalid gender.');
     }
 
-    if($_POST['premium'] == "Yes") {
-        $f3->set('premium','Yes');
-    }
+
     //Add information to member.
     if($_POST['premium'] == "Yes" && $valid == true) {
         $newMember = new PremiumMember($_POST['first-name'],$_POST['last-name'],$_POST['age'],
@@ -108,13 +104,6 @@ $f3->route('POST /profile', function($f3) {
                                     $_POST['gender'],$_POST['phone']);
         $_SESSION['premium'] = "No";
     }
-
-    $f3->set('first',$_POST['first-name']);
-    $f3->set('last',$_POST['last-name']);
-    $f3->set('age',$_POST['age']);
-    $f3->set('gender',$_POST['gender']);
-    $f3->set('phone',$_POST['phone']);
-
 
     //Assigns newMember variable to the session.
     $_SESSION['newMember'] = $newMember;
@@ -144,10 +133,22 @@ $f3->route('POST /interests', function($f3) {
     }
 
     //Adds new information to the newMember object.
-    $newMember->setSeeking($_POST['seeking']);
-    $newMember->setState($_POST['state']);
-    $newMember->setBio($_POST['biography']);
-    $newMember->setEmail($_POST['email']);
+    if(!empty($_POST['seeking'])) {
+        $newMember->setSeeking($_POST['seeking']);
+    }
+
+    if(!empty($_POST['seeking'])) {
+        $newMember->setState($_POST['state']);
+    }
+
+    if(!empty($_POST['seeking'])) {
+        $newMember->setBio($_POST['biography']);
+    }
+
+    if(!empty($_POST['seeking'])) {
+        $newMember->setEmail($_POST['email']);
+    }
+
 
     //Reassigns the newMember object to the session.
     $_SESSION['newMember'] = $newMember;
@@ -169,7 +170,7 @@ $f3->route('POST /interests', function($f3) {
 $f3->route('POST /summary', function($f3) {
     include ("model/validate.php");
     $valid = true;
-
+    $database = new Db();
     //Grabs member object from session.
     $newMember = $_SESSION['newMember'];
 
@@ -183,6 +184,14 @@ $f3->route('POST /summary', function($f3) {
     $newMember->setInterests($_POST['interests']);
     $_SESSION['newMember'] = $newMember;
 
+    //Adds a new member to the database.
+    $database->addMember($newMember->getFname(),$newMember->getLname(),$newMember->getAge(),
+        $newMember->getGender(),$newMember->getPhone(),$newMember->getEmail(),
+        $newMember->getState(),$newMember->getSeeking(),$newMember->getBio(),
+        ($newMember->getPremium == "Yes") ? 1 : 0,$newMember->getImage(),
+        implode(",",$newMember->getInterests()));
+
+
     if($valid == true) {
         $template = new Template();
         echo $template->render('pages/summary.html');
@@ -190,6 +199,13 @@ $f3->route('POST /summary', function($f3) {
         $template = new Template();
         echo $template->render('pages/interests.html');
     }
+});
+
+$f3->route('GET /admin', function($f3) {
+
+    $f3->set('members',getMembers());
+    $template = new Template();
+    echo $template->render('pages/admin.html');
 });
 
 //Run fat free

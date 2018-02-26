@@ -1,46 +1,50 @@
 <?php
 /**
- * The PremiumMember class is used to store additional information on
- * premium members signing up for the dating website Forest.
- *
- * @author Ryan Marlow <rmarlow@mail.greenriver.edu>
- * @package classes
+ * Created by PhpStorm.
+ * User: mrrya
+ * Date: 2/13/2018
+ * Time: 12:16 PM
  */
 
-/**
- * Class PremiumMember is used to store additional information about
- * members signing up for the dating website Forest.
- */
 class PremiumMember extends Member {
-    private $_interests;
+    protected $_interests;
+    protected $_interestsIn;
+    protected $_interestsOut;
+    protected $_image;
 
-    /**
-     * PremiumMember constructor assigns the first name, last name, age, gender and phone of the
-     * Premium member, uses the parent class Member constructor.
-     * @param $fname
-     * @param $lname
-     * @param $age
-     * @param $gender
-     * @param $phone
-     */
     public function __construct($fname,$lname,$age,$gender,$phone)
     {
         parent::__construct($fname,$lname,$age,$gender,$phone);
     }
 
-    /**
-     * setInterests assigns the PremiumMember's interests to the object.
-     * @param $interests
-     */
     public function setInterests($interests) {
         $this->_interests = $interests;
     }
 
-    /**
-     * getInterests returns the PremiumMember's interests.
-     * @return mixed
-     */
     public function getInterests(){
         return $this->_interests;
+    }
+
+    public function setInterestsIn($interestsIn) {
+    $this->_interestsIn = $interestsIn;
+    }
+
+    public function getInterestsIn(){
+        return $this->_interestsIn;
+    }
+    public function setInterestsOut($interestsOut) {
+        $this->_interestsIn = $interestsOut;
+    }
+
+    public function getInterestsOut(){
+        return $this->_interestsOut;
+    }
+
+    public function setImage($image) {
+        $this->image = $image;
+    }
+
+    public function getImage() {
+        return $this->image;
     }
 }

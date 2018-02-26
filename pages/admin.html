@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Forest Admin</title>
+</head>
+<tr>
+    <th>First</th>
+    <th>Name</th>
+    <th>Type</th>
+</tr>
+<body>
+    <table>
+        <repeat group="{{ @members }}" value="{{ @member }}">
+            <tr><td>{{ @member['fname'] }}</td></tr>
+        </repeat>
+    </table>
+</body>
+</html>
