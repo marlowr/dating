@@ -63,7 +63,7 @@
                                 <tr>
                                     <td><strong>Seeking:</strong> {{ $_SESSION['newMember']->getSeeking() }}</td>
                                 </tr>
-                                <check if="{{ $_SESSION['premium']=='Yes' }}">
+                                <check if="{{ $_SESSION['premium']=='1' }}">
                                     <tr>
                                         <td><strong>Interests:</strong>
                                             <repeat group="{{ $_SESSION['newMember']->getInterests() }}"

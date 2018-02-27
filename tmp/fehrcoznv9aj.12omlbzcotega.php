@@ -64,7 +64,7 @@
                                 <tr>
                                     <td><strong>Seeking:</strong> <?= ($_SESSION['newMember']->getSeeking()) ?></td>
                                 </tr>
-                                <?php if ($_SESSION['premium']=='Yes'): ?>
+                                <?php if ($_SESSION['premium']=='1'): ?>
                                     <tr>
                                         <td><strong>Interests:</strong>
                                             <?php foreach (($_SESSION['newMember']->getInterests()?:[]) as $interest): ?>

@@ -97,14 +97,14 @@ $f3->route('POST /profile', function($f3) {
 
 
     //Add information to member.
-    if($_POST['premium'] == "Yes" && $valid == true) {
+    if($_POST['premium'] == "1" && $valid == true) {
         $newMember = new PremiumMember($_POST['first-name'],$_POST['last-name'],$_POST['age'],
                                         $_POST['gender'],$_POST['phone']);
-        $_SESSION['premium'] = "Yes";
+        $_SESSION['premium'] = "1";
     } else if($valid == true) {
         $newMember = new Member($_POST['first-name'],$_POST['last-name'],$_POST['age'],
                                     $_POST['gender'],$_POST['phone']);
-        $_SESSION['premium'] = "No";
+        $_SESSION['premium'] = "0";
     }
 
     //Assigns newMember variable to the session.
@@ -156,7 +156,7 @@ $f3->route('POST /interests', function($f3) {
     $_SESSION['newMember'] = $newMember;
 
     //If all information is valid, continue with load, otherwise reload page.
-    if($valid == true && $_SESSION['premium'] == "Yes") {
+    if($valid == true && $_SESSION['premium'] == "1") {
         $template = new Template();
         echo $template->render('pages/interests.html');
     } else if($valid == true) {
