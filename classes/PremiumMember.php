@@ -1,9 +1,7 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: mrrya
- * Date: 2/13/2018
- * Time: 12:16 PM
+ * This class is the child for the member class and holds necessary information for the
+ * premium member objects.
  */
 
 class PremiumMember extends Member {

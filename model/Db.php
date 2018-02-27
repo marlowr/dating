@@ -73,6 +73,7 @@ class Db {
         $statement = $dbh->prepare($sql);
         $statement->execute();
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
         return $result;
     }
 }

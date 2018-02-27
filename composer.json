@@ -12,7 +12,9 @@
   "autoload":{
     "classmap": [
       "classes/Member.php",
-      "classes/PremiumMember.php"
+      "classes/PremiumMember.php",
+      "model/Validate.php",
+      "model/Db.php"
     ]
   }
 }

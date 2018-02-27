@@ -1,9 +1,9 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: mrrya
- * Date: 2/13/2018
- * Time: 12:06 PM
+ * This class holds the information for the member object.
+ *
+ * @author Ryan Marlow <rmarlow@mail.greenriver.edu>
+ * @version 2.0
  */
 
 class Member
@@ -50,9 +50,14 @@ class Member
         return $this->gender;
     }
 
+    //Checks gender against male and female input.
     public function setGender($gender)
     {
-        $this->gender = $gender;
+        if(preg_match('/^Male|Female$/',$gender)) {
+            $this->gender = $gender;
+        } else {
+            $this->gender = null;
+        }
     }
 
     public function getPhone()
@@ -70,9 +75,14 @@ class Member
         return $this->age;
     }
 
+    //Sets age, with validation of non-negative and all digits.
     public function setAge($age)
     {
-        $this->age = $age;
+        if(preg_match('/^[\d]{2}$/',$age)) {
+            $this->age = $age;
+        } else {
+            $this->age = null;
+        }
     }
 
     public function getEmail()
@@ -84,6 +94,8 @@ class Member
     {
         $this->email = $email;
     }
+
+
     public function getState()
     {
         return $this->state;
@@ -95,16 +107,17 @@ class Member
     }
     public function getSeeking()
     {
-        if($this->seeking != null) {
-            return $this->seeking;
-        } else {
-            return "N/A";
-        }
+        return $this->seeking;
     }
 
+    //Checks seeking against male or female text only.
     public function setSeeking($seeking)
     {
-        $this->seeking = $seeking;
+        if(preg_match('/^Male|Female$/i',$seeking)) {
+            $this->seeking = $seeking;
+        } else {
+            $this->seeking = null;
+        }
     }
     public function getBio()
     {

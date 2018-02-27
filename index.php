@@ -13,10 +13,12 @@ session_start();
 //Turn on error reporting
 error_reporting(E_ALL);
 ini_set('display_errors', TRUE);
-$database = new Db();
+
 
 //Create an instance of the Base class
 $f3 = Base::instance();
+$validate = new Validate();
+$database = new Db();
 
 //Set debug level
 $f3->set('DEBUG',3);
@@ -60,29 +62,29 @@ $f3->route('GET /personal_info', function() {
 
 //From personal_info page to profile page.
 $f3->route('POST /profile', function($f3) {
-    include ("model/validate.php");
     $valid = true;
+    global $validate;
 
     //Validates first name
-    if(!validName($_POST['first-name'])) {
+    if(!$validate->validName($_POST['first-name'])) {
         $valid = false;
         $f3->set('firsterror','Invalid first name.');
     }
 
     //validates last name
-    if(!validName($_POST['last-name'])) {
+    if(!$validate->validName($_POST['last-name'])) {
         $valid = false;
         $f3->set('lasterror','Invalid last name.');
     }
 
     //Validates age
-    if(!validAge($_POST['age'])) {
+    if(!$validate->validAge($_POST['age'])) {
         $valid = false;
         $f3->set('ageerror','Invalid age.');
     }
 
     //Validates phone number
-    if(!validPhone($_POST['phone'])) {
+    if(!$validate->validPhone($_POST['phone'])) {
         $valid = false;
         $f3->set('phoneerror','Invalid phone number');
     }
@@ -120,14 +122,14 @@ $f3->route('POST /profile', function($f3) {
 
 //From profile page to interests page.
 $f3->route('POST /interests', function($f3) {
-    include ("model/validate.php");
     $valid = true;
+    global $validate;
 
     //Assigns the variable newMember from the session variable.
     $newMember = $_SESSION['newMember'];
 
     //Checks for valid email.
-    if(!validEmail($_POST['email'])) {
+    if(!$validate->validEmail($_POST['email'])) {
         $valid = false;
         $f3->set('emailerror','Invalid email.');
     }
@@ -168,14 +170,15 @@ $f3->route('POST /interests', function($f3) {
 
 //From interests page to summary page.
 $f3->route('POST /summary', function($f3) {
-    include ("model/validate.php");
     $valid = true;
     $database = new Db();
+    global $validate;
+
     //Grabs member object from session.
     $newMember = $_SESSION['newMember'];
 
     //Checks for valid interests input
-    if(!validInterests($_POST['interests'])) {
+    if(!$validate->validInterests($_POST['interests'])) {
         $valid = false;
         $f3->set('interesterror','Invalid interests.');
     }
@@ -202,8 +205,8 @@ $f3->route('POST /summary', function($f3) {
 });
 
 $f3->route('GET /admin', function($f3) {
-
-    $f3->set('members',getMembers());
+    global $database;
+    $f3->set('members',$database->getMembers());
     $template = new Template();
     echo $template->render('pages/admin.html');
 });
